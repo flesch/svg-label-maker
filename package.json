@@ -1,0 +1,21 @@
+{
+  "name": "svg-label-maker",
+  "description": "Generate SVG images that look like GitHub issue labels and topics.",
+  "version": "1.0.0",
+  "author": "John Flesch <john@fles.ch> (https://fles.ch/)",
+  "dependencies": {
+    "common-tags": "^1.4.0"
+  },
+  "devDependencies": {
+    "claudia": "^2.10.0"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "create": "claudia --profile ${AWS_PROFILE:-default} create --handler index.handler --region us-east-1 --no-optional-dependencies --deploy-proxy-api --cache-api-config --version v${npm_package_version:0:1}",
+    "deploy": "[ -e claudia.json ] && npm run update || npm run create",
+    "destroy": "claudia --profile ${AWS_PROFILE:-default} destroy",
+    "update": "claudia --profile ${AWS_PROFILE:-default} update --no-optional-dependencies --cache-api-config --version v${npm_package_version:0:1}"
+  }
+}
